@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Webside</title>
+<style>
+
+    body{
+            background-color: whitesmoke;
+        }
+        #div {
+            display: flex;
+            border: 1px solid black;
+            background-color: wheat;
+            justify-content: flex-end;
+        }
+
+        #div button {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px;
+            background-color: white;
+            border: none;
+            border-radius: 5px;
+            
+            
+            
+        }
+        #div button:hover{
+            cursor: pointer;
+            box-shadow: 0 0 11px rgba(33,33,33,.2); 
+        }
+
+        #slidShow{
+            padding: 2%;
+            text-align: center;
+            
+        }
+
+        #slidShow img{
+            width: 60%;
+            /* height: 500px; */
+            object-fit: cover;
+        }
+        #movies_div{
+            display: grid;
+            grid-template-columns: repeat(3,28%);
+            grid-gap:5%;
+            margin: 5%;
+            margin-bottom: 0%;
+        }
+        #movies_div img{
+            width: 80%;
+            height: 300px;
+            margin-top: 30px;
+        }
+        #movies_div div{
+            border: 2px solid black;
+            text-align: center;
+            background-color: gray;
+            color: white;
+        }
+        #movies_div div:hover{
+            box-shadow:11px 11px 11px rgba(33,33,33,.2); 
+        }
+        .sort{
+            width: 150px;
+            height: 50px;
+            border-radius: 10px;
+            background-color: yellowgreen;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .sort:hover{
+            cursor: pointer;
+            box-shadow: 0 0 11px rgba(33,33,33,.2); 
+        }
+        .detail{
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+</style>
+
+</head>
+<body>
+
+    <div id="div">
+        <button id="home" onclick="home()">Home</button>
+        <button id="login" onclick="login()">Login</button>
+        <button id="signup" onclick="signup()">signUp</button>
+    </div>
+    <div id="slidShow"></div>
+
+    <button onclick="sortLH()" class="sort">Rating: Low to High</button>
+    <button onclick="sortHL()" class="sort">Rating: High to Low</button>
+
+    <div id="movies_div"></div>
+</body>
+
+<script>
+
+    function home() {
+            window.location.href = "home.html";
+
+        }
+        function login() {
+            window.location.href = "login.html";
+
+        }
+        function signup() {
+            window.location.href = "index.html";
+
+        }
+
+    function slidShow(){
+
+        let arr = ["https://www.teahub.io/photos/full/67-670663_hollywood-movie-poster-hd.jpg","https://i.insider.com/573d85a3dd0895e97d8b46d9?width=750&format=jpeg&auto=webp","https://d2j1wkp1bavyfs.cloudfront.net/wp-content/uploads/2018/07/01061016/7315945.jpg?d=360x540&q=50","https://rukminim1.flixcart.com/image/416/416/jcc9ci80/poster/d/p/v/medium-pl-inception-movies-movie-wall-poster-19-13-inches-matte-original-imaetdv8wrsdhezx.jpeg?q=70","https://rukminim1.flixcart.com/image/416/416/poster/q/r/v/posterskart-interstellar-movie-poster-pkis04-medium-original-imaebctvytcgcgcx.jpeg?q=70"];
+
+        let div = document.getElementById("slidShow")
+        let img = document.createElement("img");
+        let i = 0;
+        img.src = arr[0];
+
+        div.append(img)
+
+        setInterval(function(){
+
+            if(i==arr.length){
+                i=0;
+            }
+
+            img.src = arr[i];
+            i++;
+
+        },2000)
+
+    }
+
+    slidShow();
+
+    let movies = [
+        {name:"Avengers: Endgame",releaseDate:"26 April 2019",imdbRating:8.4,poster:"https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQA_-tL18_rj9zEcjN6n41NEaJm-kRNF9UeOtvksZ4z_OW6jRA9"},
+        {name: "Deadpool", releaseDate: "12 February 2016", imdbRating: 7.2, poster: "https://contentserver.com.au/assets/557638_p11098044_p_v8_af.jpg" },
+        { name: "Interstellar", releaseDate: "7 November 2014", imdbRating: 9, poster: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRf61mker2o4KH3CbVE7Zw5B1-VogMH8LfZHEaq3UdCMLxARZAB" },
+        { name: "The Dictator", releaseDate: "16 May 2012", imdbRating: 6, poster: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT897lBOrKpLaRJhis0b1SK-4qRZNdVYP2P8XO9Tx_UMwd71wGX" },
+        { name: "The Dark Knight", releaseDate: "18 July 2008", imdbRating: 8.6, poster: "https://contentserver.com.au/assets/598411_p173378_p_v8_au.jpg" },
+        { name: "Joker", releaseDate: "2 October 2019", imdbRating: 9.2, poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJKLiEyyz1Q9RC8EBYl3ijr3nuGeyO2ETmwy6Kdq0AQtD0elWD" },
+        { name: "A Beautiful Mind", releaseDate: "13 December 2001", imdbRating: 7.8, poster: "https://upload.wikimedia.org/wikipedia/en/thumb/b/b8/A_Beautiful_Mind_Poster.jpg/220px-A_Beautiful_Mind_Poster.jpg" },
+        { name: "Parasite", releaseDate: "21 May 2019", imdbRating: 6.6, poster: "https://m.media-amazon.com/images/M/MV5BYWZjMjk3ZTItODQ2ZC00NTY5LWE0ZDYtZTI3MjcwN2Q5NTVkXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_UY1200_CR90,0,630,1200_AL_.jpg" },
+        { name: "Tenet", releaseDate: "4 December 2020", imdbRating: 7.9, poster: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSFjKwkEgropMVZAIFXUlImtxT2_lKjTzp1dMhQvlAhd9Hf0moa" },
+    ];
+
+    if(localStorage.getItem("movies")==null){
+        localStorage.setItem("movies",JSON.stringify(movies))
+    }
+
+
+    function showMovies(d){
+
+        let movie = d;
+        
+        let movies_div = document.getElementById("movies_div")
+
+        movies_div.innerHTML = null;
+
+        movie.forEach(function(el){
+
+            let div = document.createElement("div");
+
+            let m_name = document.createElement("p");
+            m_name.innerHTML = el.name;
+            m_name.setAttribute("class","detail")
+
+            let m_date = document.createElement("p");
+            m_date.innerHTML = el.releaseDate;
+            m_date.setAttribute("class", "detail")
+
+            let m_rate = document.createElement("p");
+            m_rate.innerHTML = `IMDB: ${el.imdbRating}`;
+            m_rate.setAttribute("class", "detail")
+
+            let img = document.createElement("img");
+            img.src = el.poster;
+
+            div.append(img,m_name,m_date,m_rate)
+
+            movies_div.append(div);
+
+        })
+
+    }
+    showMovies(JSON.parse(localStorage.getItem("movies")))
+    
+    function sortLH(){
+
+       let movie = JSON.parse(localStorage.getItem("movies"));
+       
+       movie = movie.sort(function(a,b){
+
+        return a.imdbRating - b.imdbRating;
+
+       })
+       
+       showMovies(movie);
+
+    }
+
+    function sortHL(){
+
+       let movie = JSON.parse(localStorage.getItem("movies"));
+       
+       movie = movie.sort(function(a,b){
+
+        return b.imdbRating - a.imdbRating;
+
+       })
+
+       showMovies(movie);
+       
+
+    }
+
+
+        
+
+</script>
+</html>
